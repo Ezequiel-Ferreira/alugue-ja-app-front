@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row justify-content-center align-self-center">
+        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3 h-100 mt-5 border">
+            <form [formGroup]="filmeForm" (ngSubmit)="register()">
+                <div class="form-group">
+                    <label for="nome" class="ml-1 mt-3 font-weight-bold">Digite o nome para o filme:</label>
+                    <input class="form-control form-control-lg text-center" name="nome" id="nome" formControlName="nome"
+                        placeholder="Nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="descricao" class="ml-1 mt-3 font-weight-bold">Digite uma descrição para o filme:</label>
+                    <input type="text" class="form-control form-control-lg text-center" name="descricao" id="descricao"
+                    formControlName="descricao" placeholder="Descrição" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="valor" class="ml-1 mt-3 font-weight-bold">Digite o valor em creditos o filme custará:</label>
+                    <input class="form-control form-control-lg text-center" type="number" name="valor" id="valor"
+                    formControlName="valor" placeholder="Valor" required>
+                </div>
+                <div class="form-group">
+                    <label for="urlCapa" class="ml-1 mt-3 font-weight-bold">Digite a Url da capa do filme:</label>
+                    <input class="form-control form-control-lg text-center" name="urlCapa" id="urlCapa"
+                    formControlName="urlCapa" placeholder="URL da Capa" required>
+                </div>
+                <div class="form-group">
+                    <label for="urlVideo" class="ml-1 mt-3 font-weight-bold">Digite a Url do filme:</label>
+                    <input class="form-control form-control-lg text-center" name="urlVideo" id="urlVideo"
+                    formControlName="urlVideo" placeholder="URL do Video" required>
+                </div>
+                <div class="form-group" >
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Genero</label>
+                    </div>
+                    <select class="form-select form-select-sm form-control form-control-lg text-center" aria-label=".form-select-sm example"
+                        name="genero" id="genero" formControlName="genero"
+                        placeholder="Genero do filme" required>
+                        <option *ngFor="let type of tipo | keyvalue"  [value]="type.value" >{{type.value}}</option>
+                      </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit"
+                    class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

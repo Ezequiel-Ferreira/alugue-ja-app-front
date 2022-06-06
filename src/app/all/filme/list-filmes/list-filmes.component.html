@@ -1,0 +1,70 @@
+ <!--
+
+<form>
+    <div class="mb-3 row">
+      <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
+      <div class="col-xs-3 col-sm-auto">
+        <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter">
+      </div>
+    </div>
+  </form>
+  
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Country</th>
+      <th scope="col">Area</th>
+      <th scope="col">Population</th>
+    </tr>
+    </thead>
+    <tbody>
+   <tr *ngFor="let country of | async; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px">
+        <ngb-highlight [result]="country.name" [term]="filter.value"></ngb-highlight>
+      </td>
+      <td><ngb-highlight [result]="country.area | number" [term]="filter.value"></ngb-highlight></td>
+      <td><ngb-highlight [result]="country.population | number" [term]="filter.value"></ngb-highlight></td>
+    </tr> 
+    </tbody>
+  </table>
+ 
+  -->
+
+<div class="container">
+    <div class="row">
+        <div class="col" *ngFor="let filme of listFilme$ |async" style="max-width: 25rem;" >
+            <div class="card rounded m-4 p-2 bg-white border">
+                <img class="img-fluid" [src]="filme.urlCapa" alt="Capa filme" style="max-height: 10rem; max-width: 20rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{filme.nome}}</h5>
+                  <p class="card-text align-center" >{{filme.descricao}}</p>
+                  <p class="card-text"> Genero: {{filme.genero}}</p>
+                  <p class="card-text"> Valor: <strong>{{filme.valor}}</strong> creditos</p>
+                </div>
+                <div class="flex-center">
+                  <button type="button" class="btn btn-border" (click)="open(content, filme.id, filme.valor)">Alugar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ngb-pagination [collectionSize]="(listFilme$ | async)?.length" [(page)]="page" [directionLinks]="false"></ngb-pagination>
+ </div>
+
+ <ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Alugar</h4>
+    <button type="button" class="btn-close close text-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
+  </div>
+  <div class="modal-body">
+      <app-aluguel
+      [idFilme]="idFilme"
+      [valorFilme]="valorFilme"
+    ></app-aluguel>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancelar</button>
+  </div>
+</ng-template>

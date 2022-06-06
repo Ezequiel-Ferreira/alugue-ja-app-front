@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <div class="row justify-content-center align-self-center">
+      <div class="col h-100 mt-5 border">
+        <h5>Seu saldo é: {{saldo}} creditos</h5>
+        <p>Para cada hora adicionada será multiplicado pelo valor do filme que é: {{this.valorFilme}}</p>
+        <form [formGroup]="quantidadeHorasForm" (ngSubmit)="register()">
+
+          <div class="form-group">
+            <label for="quantidadeHoras" class="ml-1 mt-3 font-weight-bold">Digite a quantidade de horas que alugar:</label>
+            <input type="number" class="form-control form-control-lg text-center" name="quantidadeHoras" id="quantidadeHoras" 
+            formControlName="quantidadeHoras" placeholder="Quantidade de Horas" required>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-secondary btn-lg d-block mx-auto customSizeBtn rounded-pill">Alugar</button>
+          </div>
+        </form>
+      </div>
+    </div>

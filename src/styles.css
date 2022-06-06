@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --blue: #1e90ff;
+    --white: #ffffff;
+}
+
+.alignCenter{
+    text-align: center;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-border{
+    border: 1px solid rgba(0,0, 0, 0.5);
+}

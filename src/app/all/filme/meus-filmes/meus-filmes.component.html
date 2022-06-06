@@ -1,0 +1,41 @@
+<div class="container">
+    <h2>Meus Filmes</h2>
+    <div class="row">
+        <div class="col" *ngFor="let aluguel of (usuarioCompleto$ |async).alugueis" style="max-width: 25rem;" >
+            <div class="card rounded m-4 p-2 bg-white border">
+                <img class="img-fluid" [src]="aluguel.filme.urlCapa" alt="Capa filme" style="max-height: 10rem; max-width: 20rem;">
+                <div class="card-body">
+                  <h5 class="card-title">{{aluguel.filme.nome}}</h5>
+                  <p class="card-text align-center" >{{aluguel.filme.descricao}}</p>
+                  <p class="card-text"> Genero: {{aluguel.filme.genero}}</p>
+                  <p class="card-text"> Valor: <strong>{{aluguel.filme.valor}}</strong> creditos</p>
+                </div>
+                <div class="flex-center">
+                  <button type="button" class="btn btn-border" (click)="assistir(aluguel.id, content)">Assistir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+ <ng-template #content let-modal class="fade">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Assistir</h4>
+      <button type="button" class="btn-close close text-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
+    </div>
+    <div class="modal-body">
+        <div class="embed-responsive embed-responsive-16by9">
+            <div class="video">
+                <video controls #videoPlayer>
+                    <source src="{{this.sanitizeVideoUrl()}}" type="video/mp4" />
+                    Browser not supported
+                </video>
+
+                <iframe class="embed-responsive-item" src="{{this.sanitizeVideoUrl()}}"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancelar</button>
+    </div>
+  </ng-template>
