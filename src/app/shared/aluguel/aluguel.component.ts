@@ -47,6 +47,7 @@ export class AluguelComponent implements OnInit {
       ).subscribe(() => {
         let valorTotal = this.valorFilme * quantidadeHoras;
         this.authService.updateCreditos(valorTotal);
+        window.location.reload();
         this.router.navigate(['filme/meus-filmes']);
       })
   } 

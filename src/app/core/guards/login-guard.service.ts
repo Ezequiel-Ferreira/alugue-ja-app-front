@@ -26,7 +26,7 @@ export class LoginGuard implements CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.authService.loggedUser()) {
+    if (this.authService.loggedUser().token !== undefined && this.authService.loggedUser().token !== null) {
       this.router.navigate(['filme']);
       return false;
     }
